@@ -22,5 +22,21 @@ class FrontController extends AbstractController
     {
         return $this->render('front/video_list.html.twig');
     }
+
+    /**
+     * @Route("/video_details", name="videoDetails")
+     */
+    public function videoDetails()
+    {
+        return $this->render('front/video_details.html.twig');
+    }
+
+    /**
+     * @Route("/search_results", methods={"POST"}, name="searchResults")
+     */
+    public function searchResults()
+    {
+        return $this->render('front/search_results.html.twig');
+    }
 }
 
