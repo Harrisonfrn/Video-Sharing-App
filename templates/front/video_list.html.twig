@@ -1,10 +1,9 @@
-<?php
-$sample_videos = [289729765,238902809,150870038,219727723,289879647,261379936,289029793,60594348,290253648];
-?>
+{% extends 'base.html.twig' %}
 
-<?php include('includes/_header.php'); ?>
-<?php include('includes/_menu.php'); ?>
+{% block main %}
 
+{% set sample_videos = [289729765,238902809,150870038,219727723,289879647,261379936,289029793,60594348,290253648] %}
+ 
 <main role="main">
 
     <section class="jumbotron text-center">
@@ -50,7 +49,8 @@ $sample_videos = [289729765,238902809,150870038,219727723,289879647,261379936,28
         <div class="container">
 
             <div class="row">
-                <?php foreach($sample_videos as $video): ?>
+            
+            {% for video in sample_videos %}
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
                         <div align="center" class="embed-responsive embed-responsive-16by9">
@@ -85,7 +85,7 @@ $sample_videos = [289729765,238902809,150870038,219727723,289879647,261379936,28
                         </div>
                     </div>
                 </div>
-                <?php endforeach; ?>
+            {% endfor %}
 
                 <!-- no members -->
                 <div class="col-md-4">
@@ -141,5 +141,5 @@ $sample_videos = [289729765,238902809,150870038,219727723,289879647,261379936,28
 
 </main>
 
-<?php include('includes/_footer_links.php'); ?>
-<?php include('includes/_footer.php'); ?>
+{% endblock %}
+
