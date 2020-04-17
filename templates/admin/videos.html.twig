@@ -1,5 +1,7 @@
-<?php include('includes/_header.php'); ?>
+{% extends "admin/base.html.twig" %}
 
+{% block mainadmin %}
+  
 <h2>Videos / My liked videos</h2>
 
 <div class="table-responsive">
@@ -14,7 +16,8 @@
       </tr>
     </thead>
     <tbody>
-        <?php foreach(range(1,10) as $v): ?>
+        {% for i in 1..10 %}
+
       <tr>
         <td><?=$v?></td>
         <td>Video name</td>
@@ -33,10 +36,14 @@
         </td>
         <td><a href="#" onclick="delete_video(event,2);"><i class="fas fa-trash"></i></a></td>
       </tr>
-        <?php endforeach; ?>
+          
+        {% endfor %}
     </tbody>
   </table>
 </div>
+
+{% block customjavascripts %}
+{{parent()}}
 
 <script>
     function delete_video(e,video_id)
@@ -50,5 +57,7 @@
         }
     }
 </script>
+  
+{% endblock %}
+{% endblock %}
 
-<?php include('includes/_footer.php'); ?>

@@ -62,5 +62,13 @@ class FrontController extends AbstractController
     {
         return $this->render('front/login.html.twig');
     }
+
+    /**
+     * @Route("/payment", name="payment")
+     */
+    public function payment()
+    {
+        return $this->render('front/payment.html.twig');
+    }
 }
 
