@@ -11,6 +11,7 @@ class CategoryFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $this->loadMainCategories($manager);
+        $this->loadSubcategories($manager, 'Electronics', 1);
     }
 
     private function loadMainCategories($manager)
@@ -26,6 +27,27 @@ class CategoryFixtures extends Fixture
         $manager->flush();
     }
 
+    private function loadSubcategories($manager, $category, $parent_id)
+    {
+
+        $parent = $manager->getRepository(Category::class)->find(1);
+
+        $methodName = "get{$category}Data";
+
+        foreach($this->$methodName() as [$name])
+        {
+
+
+            $category = new Category();
+            $category->setName($name);
+            $category->setParent($parent);
+            $manager->persist($category);
+
+        }
+
+        $manager->flush();
+    }
+
     private function getMainCategoriesData()
     {
         return [
@@ -34,6 +56,17 @@ class CategoryFixtures extends Fixture
             ['Toys', 2],
             ['Books', 3],
             ['Movies', 4]
+        
+        ];
+    }
+
+    private function getElectronicsData()
+    {
+        return [
+
+            ['Cameras', 5],
+            ['Computers', 6],
+            ['Cellphone', 7]
         
         ];
     }
